@@ -344,7 +344,7 @@ class _ExpensesPageState extends ConsumerState<ExpensesPage> {
             try {
               await ref
                   .read(SqlExpensesNotifierProvider.notifier)
-                  .deleteSelectedCategory(category.id!);
+                  .deleteSelectedCategory(category.id!,category.title);
 
               if (!dialogContext.mounted) return;
 
@@ -568,6 +568,9 @@ class _ExpensesPageState extends ConsumerState<ExpensesPage> {
                     const SizedBox(height: 8),
 
                     TextField(
+                      onTapOutside: (event) {
+                        FocusManager.instance.primaryFocus?.unfocus();
+                      },
                       controller: amountController,
                       keyboardType: const TextInputType.numberWithOptions(
                         decimal: true,
@@ -621,6 +624,9 @@ class _ExpensesPageState extends ConsumerState<ExpensesPage> {
                     const SizedBox(height: 8),
 
                     TextField(
+                       onTapOutside: (event) {
+                        FocusManager.instance.primaryFocus?.unfocus();
+                      },
                       controller: noteController,
                       maxLines: 2,
                       decoration: InputDecoration(

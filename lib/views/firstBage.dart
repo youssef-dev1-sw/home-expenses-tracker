@@ -137,29 +137,34 @@ class _FirstPageState extends ConsumerState<FirstPage> {
                       ),
                       const SizedBox(height: 8),
 
-                      TextFormField(
-                        controller: allBudgetConto,
-                        keyboardType:
-                            const TextInputType.numberWithOptions(
-                          decimal: true,
-                        ),
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                        decoration: InputDecoration(
-                          hintText: "مثال: 10000",
-                          hintStyle: const TextStyle(
+                      TapRegion(
+                        onTapOutside: (event) {
+                          FocusManager.instance.primaryFocus?.unfocus();
+                        },
+                        child: TextFormField(
+                          controller: allBudgetConto,
+                          keyboardType:
+                              const TextInputType.numberWithOptions(
+                            decimal: true,
+                          ),
+                          style: const TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.grey,
                           ),
-                          prefixIcon: const Icon(
-                            Icons.account_balance_wallet,
-                          ),
-                          filled: true,
-                          fillColor: Colors.white,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(16),
-                            borderSide: BorderSide.none,
+                          decoration: InputDecoration(
+                            hintText: "مثال: 10000",
+                            hintStyle: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey,
+                            ),
+                            prefixIcon: const Icon(
+                              Icons.account_balance_wallet,
+                            ),
+                            filled: true,
+                            fillColor: Colors.white,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(16),
+                              borderSide: BorderSide.none,
+                            ),
                           ),
                         ),
                       ),

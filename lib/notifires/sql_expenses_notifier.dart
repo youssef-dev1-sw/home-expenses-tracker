@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import 'package:home_expenses_tracker/models/categories_model.dart';
 
 import 'package:to_do_sql/models/expenseCard_model.dart';
+import 'package:to_do_sql/providers/firstbage_provider.dart';
 import 'package:to_do_sql/providers/sql_provider.dart';
 
 class SqlExpensesNotifier extends AsyncNotifier<List<ExpenseCardModel>> {
@@ -44,9 +45,13 @@ class SqlExpensesNotifier extends AsyncNotifier<List<ExpenseCardModel>> {
     state = AsyncData(await showAllCategories());
   }
 
-  Future<void> deleteSelectedCategory(int id)async{
+  Future<void> deleteSelectedCategory(int id,String title)async{
+    await ref.read(sqlProvider).deleteData("DELETE FROM homeexpenses   where category = '$title'");
+
     await ref.read(sqlProvider).deleteData("DELETE FROM categories  where id = $id");
     state=AsyncData(await showAllCategories());
+
+     ref.invalidate(expensesNotofierProvider);
   }
 }
 
